@@ -26,196 +26,9 @@
 		<array>
 			<dict>
 				<key>baseClass</key>
-				<string>CCSprite</string>
-				<key>children</key>
-				<array/>
-				<key>customClass</key>
-				<string></string>
-				<key>displayName</key>
-				<string>Desert-ip5_4x</string>
-				<key>memberVarAssignmentName</key>
-				<string></string>
-				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
-				<key>properties</key>
-				<array>
-					<dict>
-						<key>name</key>
-						<string>name</string>
-						<key>type</key>
-						<string>StringSimple</string>
-						<key>value</key>
-						<string></string>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>position</string>
-						<key>type</key>
-						<string>Position</string>
-						<key>value</key>
-						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-							<integer>0</integer>
-							<integer>2</integer>
-							<integer>2</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>anchorPoint</string>
-						<key>type</key>
-						<string>Point</string>
-						<key>value</key>
-						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>scale</string>
-						<key>type</key>
-						<string>ScaleLock</string>
-						<key>value</key>
-						<array>
-							<real>1</real>
-							<real>1</real>
-							<false/>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>spriteFrame</string>
-						<key>type</key>
-						<string>SpriteFrame</string>
-						<key>value</key>
-						<array>
-							<string></string>
-							<string>Background/Desert-ip5_4x.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<real>1</real>
-							<real>1</real>
-							<real>1</real>
-							<real>1</real>
-						</array>
-					</dict>
-				</array>
-			</dict>
-			<dict>
-				<key>baseClass</key>
 				<string>CCPhysicsNode</string>
 				<key>children</key>
 				<array>
-					<dict>
-						<key>baseClass</key>
-						<string>CCBFile</string>
-						<key>children</key>
-						<array/>
-						<key>customClass</key>
-						<string></string>
-						<key>displayName</key>
-						<string>CCBFile</string>
-						<key>memberVarAssignmentName</key>
-						<string>_balloon</string>
-						<key>memberVarAssignmentType</key>
-						<integer>1</integer>
-						<key>physicsBody</key>
-						<dict>
-							<key>affectedByGravity</key>
-							<false/>
-							<key>allowsRotation</key>
-							<true/>
-							<key>bodyShape</key>
-							<integer>0</integer>
-							<key>cornerRadius</key>
-							<real>0.0</real>
-							<key>density</key>
-							<real>1</real>
-							<key>dynamic</key>
-							<true/>
-							<key>elasticity</key>
-							<real>0.30000001192092896</real>
-							<key>friction</key>
-							<real>0.30000001192092896</real>
-							<key>points</key>
-							<array>
-								<array>
-									<real>-37.53515625</real>
-									<real>-10.484375</real>
-								</array>
-								<array>
-									<real>20.48046875</real>
-									<real>-9.4921875</real>
-								</array>
-								<array>
-									<real>20.48046875</real>
-									<real>55.5234375</real>
-								</array>
-								<array>
-									<real>-36.5546875</real>
-									<real>55.5234375</real>
-								</array>
-							</array>
-						</dict>
-						<key>properties</key>
-						<array>
-							<dict>
-								<key>name</key>
-								<string>name</string>
-								<key>type</key>
-								<string>StringSimple</string>
-								<key>value</key>
-								<string></string>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>position</string>
-								<key>type</key>
-								<string>Position</string>
-								<key>value</key>
-								<array>
-									<real>116</real>
-									<real>203</real>
-									<integer>0</integer>
-									<integer>0</integer>
-									<integer>0</integer>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>scale</string>
-								<key>type</key>
-								<string>ScaleLock</string>
-								<key>value</key>
-								<array>
-									<real>1.4546365737915039</real>
-									<real>1.2918051481246948</real>
-									<false/>
-									<integer>0</integer>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>ccbFile</string>
-								<key>type</key>
-								<string>CCBFile</string>
-								<key>value</key>
-								<string>Balloon.ccb</string>
-							</dict>
-						</array>
-						<key>selected</key>
-						<true/>
-					</dict>
 					<dict>
 						<key>baseClass</key>
 						<string>CCSprite</string>
@@ -224,11 +37,11 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>Western-Ground_4x</string>
+						<string>Desert-ip5_4x</string>
 						<key>memberVarAssignmentName</key>
-						<string></string>
+						<string>_westbg1</string>
 						<key>memberVarAssignmentType</key>
-						<integer>0</integer>
+						<integer>1</integer>
 						<key>physicsBody</key>
 						<dict>
 							<key>affectedByGravity</key>
@@ -255,14 +68,14 @@
 								</array>
 								<array>
 									<real>0.0</real>
-									<real>233</real>
+									<real>320</real>
 								</array>
 								<array>
-									<real>960</real>
-									<real>233</real>
+									<real>568</real>
+									<real>320</real>
 								</array>
 								<array>
-									<real>960</real>
+									<real>568</real>
 									<real>0.0</real>
 								</array>
 							</array>
@@ -284,8 +97,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>-2</real>
-									<real>-32.5</real>
+									<real>0.0</real>
+									<real>160</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -323,7 +136,382 @@
 								<key>value</key>
 								<array>
 									<string></string>
-									<string>Background/Western-Ground_4x.png</string>
+									<string>Background/Desert-ip5_4x.png</string>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>color</string>
+								<key>type</key>
+								<string>Color3</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<real>1</real>
+									<real>1</real>
+								</array>
+							</dict>
+						</array>
+					</dict>
+					<dict>
+						<key>baseClass</key>
+						<string>CCSprite</string>
+						<key>children</key>
+						<array/>
+						<key>customClass</key>
+						<string></string>
+						<key>displayName</key>
+						<string>Desert-ip5_4x</string>
+						<key>memberVarAssignmentName</key>
+						<string>_westbg2</string>
+						<key>memberVarAssignmentType</key>
+						<integer>1</integer>
+						<key>physicsBody</key>
+						<dict>
+							<key>affectedByGravity</key>
+							<true/>
+							<key>allowsRotation</key>
+							<true/>
+							<key>bodyShape</key>
+							<integer>0</integer>
+							<key>cornerRadius</key>
+							<real>0.0</real>
+							<key>density</key>
+							<real>1</real>
+							<key>dynamic</key>
+							<false/>
+							<key>elasticity</key>
+							<real>0.30000001192092896</real>
+							<key>friction</key>
+							<real>0.30000001192092896</real>
+							<key>points</key>
+							<array>
+								<array>
+									<real>0.0</real>
+									<real>0.0</real>
+								</array>
+								<array>
+									<real>0.0</real>
+									<real>320</real>
+								</array>
+								<array>
+									<real>568</real>
+									<real>320</real>
+								</array>
+								<array>
+									<real>568</real>
+									<real>0.0</real>
+								</array>
+							</array>
+						</dict>
+						<key>properties</key>
+						<array>
+							<dict>
+								<key>name</key>
+								<string>name</string>
+								<key>type</key>
+								<string>StringSimple</string>
+								<key>value</key>
+								<string></string>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>position</string>
+								<key>type</key>
+								<string>Position</string>
+								<key>value</key>
+								<array>
+									<real>568</real>
+									<real>160</real>
+									<integer>0</integer>
+									<integer>0</integer>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>anchorPoint</string>
+								<key>type</key>
+								<string>Point</string>
+								<key>value</key>
+								<array>
+									<real>0.0</real>
+									<real>0.5</real>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>scale</string>
+								<key>type</key>
+								<string>ScaleLock</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<false/>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>spriteFrame</string>
+								<key>type</key>
+								<string>SpriteFrame</string>
+								<key>value</key>
+								<array>
+									<string></string>
+									<string>Background/Desert-ip5_4x.png</string>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>color</string>
+								<key>type</key>
+								<string>Color3</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<real>1</real>
+									<real>1</real>
+								</array>
+							</dict>
+						</array>
+					</dict>
+					<dict>
+						<key>baseClass</key>
+						<string>CCSprite</string>
+						<key>children</key>
+						<array/>
+						<key>customClass</key>
+						<string></string>
+						<key>displayName</key>
+						<string>Western-Ground_4x</string>
+						<key>memberVarAssignmentName</key>
+						<string>_desert1</string>
+						<key>memberVarAssignmentType</key>
+						<integer>1</integer>
+						<key>physicsBody</key>
+						<dict>
+							<key>affectedByGravity</key>
+							<true/>
+							<key>allowsRotation</key>
+							<true/>
+							<key>bodyShape</key>
+							<integer>0</integer>
+							<key>cornerRadius</key>
+							<real>0.0</real>
+							<key>density</key>
+							<real>1</real>
+							<key>dynamic</key>
+							<false/>
+							<key>elasticity</key>
+							<real>0.30000001192092896</real>
+							<key>friction</key>
+							<real>0.30000001192092896</real>
+							<key>points</key>
+							<array>
+								<array>
+									<real>0.0</real>
+									<real>0.0</real>
+								</array>
+								<array>
+									<real>0.0</real>
+									<real>91</real>
+								</array>
+								<array>
+									<real>960</real>
+									<real>91</real>
+								</array>
+								<array>
+									<real>960</real>
+									<real>0.0</real>
+								</array>
+							</array>
+						</dict>
+						<key>properties</key>
+						<array>
+							<dict>
+								<key>name</key>
+								<string>name</string>
+								<key>type</key>
+								<string>StringSimple</string>
+								<key>value</key>
+								<string></string>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>position</string>
+								<key>type</key>
+								<string>Position</string>
+								<key>value</key>
+								<array>
+									<real>0.0</real>
+									<real>30</real>
+									<integer>0</integer>
+									<integer>0</integer>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>anchorPoint</string>
+								<key>type</key>
+								<string>Point</string>
+								<key>value</key>
+								<array>
+									<real>0.0</real>
+									<real>0.5</real>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>scale</string>
+								<key>type</key>
+								<string>ScaleLock</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<false/>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>spriteFrame</string>
+								<key>type</key>
+								<string>SpriteFrame</string>
+								<key>value</key>
+								<array>
+									<string></string>
+									<string>grounds/Western-Ground_4x.png</string>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>color</string>
+								<key>type</key>
+								<string>Color3</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<real>1</real>
+									<real>1</real>
+								</array>
+							</dict>
+						</array>
+					</dict>
+					<dict>
+						<key>baseClass</key>
+						<string>CCSprite</string>
+						<key>children</key>
+						<array/>
+						<key>customClass</key>
+						<string></string>
+						<key>displayName</key>
+						<string>Western-Ground_4x</string>
+						<key>memberVarAssignmentName</key>
+						<string>_desert2</string>
+						<key>memberVarAssignmentType</key>
+						<integer>1</integer>
+						<key>physicsBody</key>
+						<dict>
+							<key>affectedByGravity</key>
+							<true/>
+							<key>allowsRotation</key>
+							<true/>
+							<key>bodyShape</key>
+							<integer>0</integer>
+							<key>cornerRadius</key>
+							<real>0.0</real>
+							<key>density</key>
+							<real>1</real>
+							<key>dynamic</key>
+							<false/>
+							<key>elasticity</key>
+							<real>0.30000001192092896</real>
+							<key>friction</key>
+							<real>0.30000001192092896</real>
+							<key>points</key>
+							<array>
+								<array>
+									<real>0.0</real>
+									<real>0.0</real>
+								</array>
+								<array>
+									<real>0.0</real>
+									<real>91</real>
+								</array>
+								<array>
+									<real>960</real>
+									<real>91</real>
+								</array>
+								<array>
+									<real>960</real>
+									<real>0.0</real>
+								</array>
+							</array>
+						</dict>
+						<key>properties</key>
+						<array>
+							<dict>
+								<key>name</key>
+								<string>name</string>
+								<key>type</key>
+								<string>StringSimple</string>
+								<key>value</key>
+								<string></string>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>position</string>
+								<key>type</key>
+								<string>Position</string>
+								<key>value</key>
+								<array>
+									<real>960</real>
+									<real>30</real>
+									<integer>0</integer>
+									<integer>0</integer>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>anchorPoint</string>
+								<key>type</key>
+								<string>Point</string>
+								<key>value</key>
+								<array>
+									<real>0.0</real>
+									<real>0.5</real>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>scale</string>
+								<key>type</key>
+								<string>ScaleLock</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<false/>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>spriteFrame</string>
+								<key>type</key>
+								<string>SpriteFrame</string>
+								<key>value</key>
+								<array>
+									<string></string>
+									<string>grounds/Western-Ground_4x.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -347,9 +535,9 @@
 				<key>displayName</key>
 				<string>CCPhysicsNode</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_physicsNode</string>
 				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>properties</key>
 				<array>
 					<dict>
@@ -431,6 +619,68 @@
 						<real>0.5</real>
 					</dict>
 				</array>
+			</dict>
+			<dict>
+				<key>baseClass</key>
+				<string>CCBFile</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
+				<string></string>
+				<key>displayName</key>
+				<string>CCBFile</string>
+				<key>memberVarAssignmentName</key>
+				<string>_balloon</string>
+				<key>memberVarAssignmentType</key>
+				<integer>1</integer>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>name</key>
+						<string>name</string>
+						<key>type</key>
+						<string>StringSimple</string>
+						<key>value</key>
+						<string></string>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>294</real>
+							<real>154</real>
+							<integer>0</integer>
+							<integer>0</integer>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>1.9534063339233398</real>
+							<real>1.7373994588851929</real>
+							<false/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>ccbFile</string>
+						<key>type</key>
+						<string>CCBFile</string>
+						<key>value</key>
+						<string>Balloon.ccb</string>
+					</dict>
+				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
@@ -572,7 +822,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.0</real>
+			<real>1.5</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
@@ -591,6 +841,6 @@
 		</dict>
 	</array>
 	<key>stageBorder</key>
-	<integer>0</integer>
+	<integer>3</integer>
 </dict>
 </plist>
