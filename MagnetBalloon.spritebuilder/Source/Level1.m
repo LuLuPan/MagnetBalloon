@@ -9,10 +9,12 @@
 #import "Level1.h"
 #import "Magnet.h"
 //default speed of balloon in Level1
-static const CGFloat scrollSpeed = 80.f;
+static const CGFloat fg_scrollSpeed = 120.f;
+static const CGFloat bg_scrollSpeed = 60.f;
 
 @implementation Level1 {
     CCSprite *_balloon;
+    CCNode *_ore_bar;
     CCPhysicsNode *_physicsNode;
     // loop desert and background scene
     CCNode *_desert1;
@@ -23,11 +25,16 @@ static const CGFloat scrollSpeed = 80.f;
     NSArray *_westbgs;
     
     Magnet *_balloon_magnet;
+    CCLabelTTF *_scoreText;
 }
 
 - (void)didLoadFromCCB {
     _deserts = @[_desert1, _desert2];
     _westbgs = @[_westbg1, _westbg2];
+    
+    _balloon.physicsBody.collisionType = @"balloon";
+    _balloon.physicsBody.sensor = YES;
+    //_balloon_magnet = [[Magnet alloc] initMagnet];
 }
 
 - (void)onEnter {
@@ -38,16 +45,26 @@ static const CGFloat scrollSpeed = 80.f;
     [super onEnterTransitionDidFinish];
     
     self.userInteractionEnabled = YES;
+    _physicsNode.debugDraw = TRUE;
+}
+
+#pragma mark - CCPhysicsCollisionDelegate
+
+- (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair balloon:(CCNode *)balloon ore:(CCNode *)ore {
+    [ore removeFromParent];
+    CCLOG(@"collision!");
+    return YES;
 }
 
 - (void)update:(CCTime)delta {
     // update balloon position
-    _balloon.position = ccp(_balloon.position.x + delta * scrollSpeed, _balloon.position.y);
-    _balloon_magnet.position = ccp(_balloon_magnet.position.x + delta * scrollSpeed, _balloon_magnet.position.y);
+    //_balloon.position = ccp(_balloon.position.x + delta * fg_scrollSpeed, _balloon.position.y);
+    //_balloon_magnet.position = ccp(_balloon_magnet.position.x + delta * fg_scrollSpeed, _balloon_magnet.position.y);
+    _ore_bar.position = ccp(_ore_bar.position.x + delta * fg_scrollSpeed, _ore_bar.position.y);
     // update physics nodes position to create camera	
-    _physicsNode.position = ccp(_physicsNode.position.x - (scrollSpeed *delta), _physicsNode.position.y);
+    _physicsNode.position = ccp(_physicsNode.position.x - (bg_scrollSpeed *delta), _physicsNode.position.y);
 
-    CCLOG(@"Magnet: %f, %f", _balloon_magnet.position.x, _balloon_magnet.position.y);
+    _scoreText.string = [NSString stringWithFormat:@"%d", _physicsNode.position.x];
     // loop the western background scene
     for (CCNode *westbg in _westbgs) {
         // get the world position of the ground
@@ -71,7 +88,17 @@ static const CGFloat scrollSpeed = 80.f;
             desert.position = ccp(desert.position.x + 2 * desert.contentSize.width, desert.position.y);
         }
     }
+    
+    [_balloon_magnet.physicsBody applyAngularImpulse:0.f];
+}
 
+- (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+    // Rotate Magnet Pole
+    _balloon_magnet.rotationalSkewX = _balloon_magnet.pole_n ? 180.f : 0.f;
+    _balloon_magnet.rotationalSkewY = _balloon_magnet.pole_n ? 180.f : 0.f;
+    _balloon_magnet.pole_n = _balloon_magnet.pole_n ? FALSE : TRUE;
+    
+    CCLOG(@"Magnet Pole: %d", _balloon_magnet.pole_n);
 }
 
 @end

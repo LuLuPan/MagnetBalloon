@@ -10,4 +10,21 @@
 
 @implementation Magnet
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.pole_n = TRUE;
+    }
+    
+    return self;
+}
+
+- (id)initMagnet {
+    if (self) {
+        self.pole_n = TRUE;
+    }
+    
+    return self;
+}
+
 @end

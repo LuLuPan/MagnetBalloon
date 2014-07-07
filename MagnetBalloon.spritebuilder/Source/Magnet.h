@@ -10,6 +10,7 @@
 
 @interface Magnet : CCSprite
 
-@property (nonatomic, assign) BOOL pole;
+@property (nonatomic, assign) BOOL pole_n;
 
+- (id)initMagnet;
 @end

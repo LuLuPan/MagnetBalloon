@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB826C10196A800100F304CD /* Ore.m in Sources */ = {isa = PBXBuildFile; fileRef = AB826C0F196A800100F304CD /* Ore.m */; };
 		AB830F24196A1ACC0060A1E2 /* Magnet.m in Sources */ = {isa = PBXBuildFile; fileRef = AB830F23196A1ACC0060A1E2 /* Magnet.m */; };
 		AB8833671969C48900FAB7E4 /* Level1.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8833661969C48900FAB7E4 /* Level1.m */; };
 		B71F5911188484E7003F4D28 /* iPad-old.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5907188484E7003F4D28 /* iPad-old.png */; };
@@ -57,6 +58,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB826C0E196A800100F304CD /* Ore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ore.h; sourceTree = "<group>"; };
+		AB826C0F196A800100F304CD /* Ore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ore.m; sourceTree = "<group>"; };
 		AB830F22196A1ACC0060A1E2 /* Magnet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Magnet.h; path = Source/Magnet.h; sourceTree = "<group>"; };
 		AB830F23196A1ACC0060A1E2 /* Magnet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Magnet.m; path = Source/Magnet.m; sourceTree = "<group>"; };
 		AB8833651969C48900FAB7E4 /* Level1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Level1.h; path = Source/Level1.h; sourceTree = "<group>"; };
@@ -136,6 +139,8 @@
 				AB8833661969C48900FAB7E4 /* Level1.m */,
 				AB830F22196A1ACC0060A1E2 /* Magnet.h */,
 				AB830F23196A1ACC0060A1E2 /* Magnet.m */,
+				AB826C0E196A800100F304CD /* Ore.h */,
+				AB826C0F196A800100F304CD /* Ore.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -333,6 +338,7 @@
 				B73789871807631A0076A88C /* main.m in Sources */,
 				AB8833671969C48900FAB7E4 /* Level1.m in Sources */,
 				AB830F24196A1ACC0060A1E2 /* Magnet.m in Sources */,
+				AB826C10196A800100F304CD /* Ore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
