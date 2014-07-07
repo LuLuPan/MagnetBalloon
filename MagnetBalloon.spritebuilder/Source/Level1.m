@@ -8,14 +8,20 @@
 
 #import "Level1.h"
 #import "Magnet.h"
+#import "Ore.h"
 //default speed of balloon in Level1
 static const CGFloat fg_scrollSpeed = 120.f;
 static const CGFloat bg_scrollSpeed = 60.f;
+
+// distance between each ore bars
+static const CGFloat firstOrePosition = 280.f;
+static const CGFloat distanceBetweenOres = 160.f;
 
 @implementation Level1 {
     CCSprite *_balloon;
     CCNode *_ore_bar;
     CCPhysicsNode *_physicsNode;
+    CCPhysicsNode *_physicsNodeFg;
     // loop desert and background scene
     CCNode *_desert1;
     CCNode *_desert2;
@@ -25,6 +31,10 @@ static const CGFloat bg_scrollSpeed = 60.f;
     NSArray *_westbgs;
     
     Magnet *_balloon_magnet;
+    
+    // ore bars
+    NSMutableArray *_ores;
+    
     CCLabelTTF *_scoreText;
 }
 
@@ -34,7 +44,15 @@ static const CGFloat bg_scrollSpeed = 60.f;
     
     _balloon.physicsBody.collisionType = @"balloon";
     _balloon.physicsBody.sensor = YES;
+    
     //_balloon_magnet = [[Magnet alloc] initMagnet];
+    _physicsNode.debugDraw = TRUE;
+    _physicsNodeFg.debugDraw = TRUE;
+    
+    _ores = [NSMutableArray array];
+    [self spawnNewOre];
+    [self spawnNewOre];
+    [self spawnNewOre];
 }
 
 - (void)onEnter {
@@ -45,7 +63,6 @@ static const CGFloat bg_scrollSpeed = 60.f;
     [super onEnterTransitionDidFinish];
     
     self.userInteractionEnabled = YES;
-    _physicsNode.debugDraw = TRUE;
 }
 
 #pragma mark - CCPhysicsCollisionDelegate
@@ -99,6 +116,26 @@ static const CGFloat bg_scrollSpeed = 60.f;
     _balloon_magnet.pole_n = _balloon_magnet.pole_n ? FALSE : TRUE;
     
     CCLOG(@"Magnet Pole: %d", _balloon_magnet.pole_n);
+}
+
+
+#pragma mark - Ore Spawning
+
+- (void)spawnNewOre {
+    CCNode *previousOre = [_ores lastObject];
+    CGFloat previousOreXPosition = previousOre.position.x;
+    
+    if (!previousOre) {
+        // this is the first obstacle
+        previousOreXPosition = firstOrePosition;
+    }
+    
+    Ore *ore = (Ore *)[CCBReader load:@"Ore"];
+    ore.position = ccp(previousOreXPosition + distanceBetweenOres, 0);
+    //[ore setupRandomPosition];
+    //ore.zOrder = DrawingOrderPipes;
+    [_physicsNode addChild:ore];
+    [_ores addObject:ore];
 }
 
 @end
