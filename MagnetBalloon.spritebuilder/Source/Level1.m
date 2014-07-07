@@ -7,7 +7,7 @@
 //
 
 #import "Level1.h"
-
+#import "Magnet.h"
 //default speed of balloon in Level1
 static const CGFloat scrollSpeed = 80.f;
 
@@ -21,6 +21,8 @@ static const CGFloat scrollSpeed = 80.f;
     CCNode *_westbg1;
     CCNode *_westbg2;
     NSArray *_westbgs;
+    
+    Magnet *_balloon_magnet;
 }
 
 - (void)didLoadFromCCB {
@@ -40,12 +42,12 @@ static const CGFloat scrollSpeed = 80.f;
 
 - (void)update:(CCTime)delta {
     // update balloon position
-    //_balloon.position = ccp(_balloon.position.x + delta * scrollSpeed, _balloon.position.y);
- 
+    _balloon.position = ccp(_balloon.position.x + delta * scrollSpeed, _balloon.position.y);
+    _balloon_magnet.position = ccp(_balloon_magnet.position.x + delta * scrollSpeed, _balloon_magnet.position.y);
     // update physics nodes position to create camera	
     _physicsNode.position = ccp(_physicsNode.position.x - (scrollSpeed *delta), _physicsNode.position.y);
 
-
+    CCLOG(@"Magnet: %f, %f", _balloon_magnet.position.x, _balloon_magnet.position.y);
     // loop the western background scene
     for (CCNode *westbg in _westbgs) {
         // get the world position of the ground
@@ -68,7 +70,6 @@ static const CGFloat scrollSpeed = 80.f;
         if (desertScreenPosition.x <= (-1 * desert.contentSize.width)) {
             desert.position = ccp(desert.position.x + 2 * desert.contentSize.width, desert.position.y);
         }
-        CCLOG(@"Desert1: %f, %f", _desert1.position.x, _desert1.position.y);
     }
 
 }
