@@ -153,9 +153,11 @@ NSInteger tmp = 0;
     
     Ore *ore;
     if (tmp % 2 == 0) {
-        ore = (Ore *)[CCBReader load:@"Ore2"];
+        ore = (Ore *)[CCBReader load:@"BadguyN"];
+        ore.pole_n = TRUE;
     } else {
         ore = (Ore *)[CCBReader load:@"Ore"];
+        ore.pole_n = FALSE;
     }
     tmp++;
     //Ore *ore = [[Ore alloc] initOre];
