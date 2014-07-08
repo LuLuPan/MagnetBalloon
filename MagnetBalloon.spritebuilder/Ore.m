@@ -9,16 +9,22 @@
 #import "Ore.h"
 
 @implementation Ore {
-    CCNode *_object;
-    CCNode *_obstacle;
+    CCNode *_bar;
+}
+
+- (id)initOre {
+    self = [super initWithImageNamed:@"Background/element_red_polygon_glossy_4x.png"];
+    
+    if (self) {
+        self.pole_n = TRUE;
+    }
+    
+    return self;
 }
 
 - (void)didLoadFromCCB {
-    _object.physicsBody.collisionType = @"ore";
-    _object.physicsBody.sensor = YES;
-    
-    _obstacle.physicsBody.collisionType = @"ore";
-    _obstacle.physicsBody.sensor = YES;
+    _bar.physicsBody.collisionType = @"ore";
+    _bar.physicsBody.sensor = YES;
 }
 
 @end

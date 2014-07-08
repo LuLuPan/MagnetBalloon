@@ -37,11 +37,11 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>element_red_polygon_glossy_4x</string>
+						<string>element_blue_polygon@4x</string>
 						<key>memberVarAssignmentName</key>
 						<string></string>
 						<key>memberVarAssignmentType</key>
-						<integer>2</integer>
+						<integer>0</integer>
 						<key>properties</key>
 						<array>
 							<dict>
@@ -59,8 +59,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>20</real>
-									<real>13</real>
+									<real>5</real>
+									<real>22</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -98,7 +98,7 @@
 								<key>value</key>
 								<array>
 									<string></string>
-									<string>Background/element_red_polygon_glossy_4x.png</string>
+									<string>Background/element_blue_polygon@4x.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -115,8 +115,6 @@
 								</array>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>
@@ -153,14 +151,14 @@
 						</array>
 						<array>
 							<real>0.0</real>
-							<real>400</real>
+							<real>568</real>
 						</array>
 						<array>
-							<real>30</real>
-							<real>400</real>
+							<real>50</real>
+							<real>568</real>
 						</array>
 						<array>
-							<real>30</real>
+							<real>50</real>
 							<real>0.0</real>
 						</array>
 					</array>
@@ -182,8 +180,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>15</real>
-							<real>-19</real>
+							<real>0.0</real>
+							<real>0.0</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -268,7 +266,7 @@
 				<string>Size</string>
 				<key>value</key>
 				<array>
-					<real>50</real>
+					<real>30</real>
 					<real>568</real>
 					<integer>0</integer>
 					<integer>0</integer>
@@ -299,6 +297,8 @@
 				</array>
 			</dict>
 		</array>
+		<key>selected</key>
+		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>

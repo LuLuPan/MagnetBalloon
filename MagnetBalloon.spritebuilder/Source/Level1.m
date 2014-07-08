@@ -16,6 +16,7 @@ static const CGFloat bg_scrollSpeed = 60.f;
 // distance between each ore bars
 static const CGFloat firstOrePosition = 280.f;
 static const CGFloat distanceBetweenOres = 160.f;
+NSInteger tmp = 0;
 
 @implementation Level1 {
     CCSprite *_balloon;
@@ -150,7 +151,14 @@ static const CGFloat distanceBetweenOres = 160.f;
         previousOreXPosition = firstOrePosition;
     }
     
-    Ore *ore = (Ore *)[CCBReader load:@"Ore"];
+    Ore *ore;
+    if (tmp % 2 == 0) {
+        ore = (Ore *)[CCBReader load:@"Ore2"];
+    } else {
+        ore = (Ore *)[CCBReader load:@"Ore"];
+    }
+    tmp++;
+    //Ore *ore = [[Ore alloc] initOre];
     ore.position = ccp(previousOreXPosition + distanceBetweenOres, 20);
     //[ore setupRandomPosition];
     //ore.zOrder = DrawingOrderPipes;

@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Apportable. All rights reserved.
 //
 
-#import "CCNode.h"
+#import "CCSprite.h"
 
-@interface Ore : CCNode
+@interface Ore : CCSprite
 
 @property (nonatomic, assign) BOOL pole_n;
-
+- (id)initOre;
 @end
