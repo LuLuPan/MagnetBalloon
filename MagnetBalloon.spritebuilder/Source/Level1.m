@@ -19,9 +19,7 @@ static const CGFloat distanceBetweenOres = 160.f;
 
 @implementation Level1 {
     CCSprite *_balloon;
-    CCNode *_ore_bar;
     CCPhysicsNode *_physicsNode;
-    CCPhysicsNode *_physicsNodeFg;
     // loop desert and background scene
     CCNode *_desert1;
     CCNode *_desert2;
@@ -35,21 +33,26 @@ static const CGFloat distanceBetweenOres = 160.f;
     // ore bars
     NSMutableArray *_ores;
     
+    NSInteger _score;
+    
     CCLabelTTF *_scoreText;
 }
 
 - (void)didLoadFromCCB {
     _deserts = @[_desert1, _desert2];
     _westbgs = @[_westbg1, _westbg2];
+
+    
+    //_balloon_magnet = [[Magnet alloc] initMagnet];
+    _physicsNode.collisionDelegate = self;
+    _physicsNode.debugDraw = TRUE;
+    
     
     _balloon.physicsBody.collisionType = @"balloon";
     _balloon.physicsBody.sensor = YES;
     
-    //_balloon_magnet = [[Magnet alloc] initMagnet];
-    _physicsNode.debugDraw = TRUE;
-    _physicsNodeFg.debugDraw = TRUE;
-    
     _ores = [NSMutableArray array];
+    [self spawnNewOre];
     [self spawnNewOre];
     [self spawnNewOre];
     [self spawnNewOre];
@@ -68,20 +71,37 @@ static const CGFloat distanceBetweenOres = 160.f;
 #pragma mark - CCPhysicsCollisionDelegate
 
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair balloon:(CCNode *)balloon ore:(CCNode *)ore {
+ 
+    
+    CCLOG(@"++++++++++++++++++++++++++");
+    
+    //    for (Ore *_ore in _ores) {
+    //        CGPoint bgWorldPosition = [_physicsNode convertToWorldSpace:westbg.position];
+    //    }
+    CGPoint oreWorldPosition = [_physicsNode convertToWorldSpace:ore.position];
+    CCLOG(@"collision: %f, %f", oreWorldPosition.x, oreWorldPosition.y);
+    CCLOG(@"--------------------------");
+    
+    
     [ore removeFromParent];
-    CCLOG(@"collision!");
+
+
+    _score++;
+    
+    _scoreText.string = [NSString stringWithFormat:@"%d", _score];
+
     return YES;
 }
 
 - (void)update:(CCTime)delta {
     // update balloon position
-    //_balloon.position = ccp(_balloon.position.x + delta * fg_scrollSpeed, _balloon.position.y);
+    _balloon.position = ccp(_balloon.position.x + delta * bg_scrollSpeed, _balloon.position.y);
+
     //_balloon_magnet.position = ccp(_balloon_magnet.position.x + delta * fg_scrollSpeed, _balloon_magnet.position.y);
-    _ore_bar.position = ccp(_ore_bar.position.x + delta * fg_scrollSpeed, _ore_bar.position.y);
+
     // update physics nodes position to create camera	
     _physicsNode.position = ccp(_physicsNode.position.x - (bg_scrollSpeed *delta), _physicsNode.position.y);
 
-    _scoreText.string = [NSString stringWithFormat:@"%d", _physicsNode.position.x];
     // loop the western background scene
     for (CCNode *westbg in _westbgs) {
         // get the world position of the ground
@@ -131,7 +151,7 @@ static const CGFloat distanceBetweenOres = 160.f;
     }
     
     Ore *ore = (Ore *)[CCBReader load:@"Ore"];
-    ore.position = ccp(previousOreXPosition + distanceBetweenOres, 0);
+    ore.position = ccp(previousOreXPosition + distanceBetweenOres, 20);
     //[ore setupRandomPosition];
     //ore.zOrder = DrawingOrderPipes;
     [_physicsNode addChild:ore];

@@ -10,4 +10,6 @@
 
 @interface Ore : CCNode
 
+@property (nonatomic, assign) BOOL pole_n;
+
 @end

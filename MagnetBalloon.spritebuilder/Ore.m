@@ -8,11 +8,17 @@
 
 #import "Ore.h"
 
-@implementation Ore
+@implementation Ore {
+    CCNode *_object;
+    CCNode *_obstacle;
+}
 
 - (void)didLoadFromCCB {
-    self.physicsBody.collisionType = @"ore";
-    self.physicsBody.sensor = YES;
+    _object.physicsBody.collisionType = @"ore";
+    _object.physicsBody.sensor = YES;
+    
+    _obstacle.physicsBody.collisionType = @"ore";
+    _obstacle.physicsBody.sensor = YES;
 }
 
 @end
