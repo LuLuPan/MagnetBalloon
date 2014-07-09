@@ -11,12 +11,13 @@
 #import "Ore.h"
 //default speed of balloon in Level1
 static const CGFloat fg_scrollSpeed = 120.f;
-static const CGFloat bg_scrollSpeed = 60.f;
+static CGFloat bg_scrollSpeed = 20.f;
 
 // distance between each ore bars
-static const CGFloat firstOrePosition = 80.f;
-static const CGFloat distanceBetweenOres = 100.f;
+static const CGFloat firstOrePosition = 200.f;
+static const CGFloat distanceBetweenOres = 90.f;
 
+// enum for object type
 typedef NS_ENUM(NSInteger, ObjType) {
     OreN,
     OreS,
@@ -40,6 +41,7 @@ typedef NS_ENUM(NSInteger, ObjType) {
     
     // ore bars
     NSMutableArray *_ores;
+    NSMutableArray *_objs_ctrl;
     
     NSInteger _score;
     
@@ -53,22 +55,19 @@ typedef NS_ENUM(NSInteger, ObjType) {
     
     //_balloon_magnet = [[Magnet alloc] initMagnet];
     _physicsNode.collisionDelegate = self;
-    _physicsNode.debugDraw = TRUE;
+    //_physicsNode.debugDraw = TRUE;
     
     
     _balloon.physicsBody.collisionType = @"balloon";
     _balloon.physicsBody.sensor = YES;
     
     _ores = [NSMutableArray array];
-    [self spawnNewOre];
-    [self spawnNewOre];
-    [self spawnNewOre];
-    [self spawnNewOre];
-    [self spawnNewOre];
-    [self spawnNewOre];
-    [self spawnNewOre];
-    [self spawnNewOre];
+    _objs_ctrl = [NSMutableArray array];
     
+    [self spawnNewOre];
+    [self spawnNewOre];
+    [self spawnNewOre];
+    [self spawnNewOre];
 }
 
 - (void)onEnter {
@@ -84,24 +83,48 @@ typedef NS_ENUM(NSInteger, ObjType) {
 #pragma mark - CCPhysicsCollisionDelegate
 
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair balloon:(CCNode *)balloon ore:(CCNode *)ore {
- 
     
-    CCLOG(@"++++++++++++++++++++++++++");
+    if([ore isKindOfClass:[Ore class]])
+    {
+        CCLOG(@"++++++++++++++++++++++++++");
+    }
     
-    //    for (Ore *_ore in _ores) {
-    //        CGPoint bgWorldPosition = [_physicsNode convertToWorldSpace:westbg.position];
-    //    }
-    CGPoint oreWorldPosition = [_physicsNode convertToWorldSpace:ore.position];
-    CCLOG(@"collision: %f, %f", oreWorldPosition.x, oreWorldPosition.y);
-    CCLOG(@"--------------------------");
+    if([ore isMemberOfClass:[Ore class]])
+    {
+        CCLOG(@"--------------------------");
+    }
     
+    Ore* object = [_objs_ctrl objectAtIndex:0];
+    CCLOG(@"Object: %d, %d", object.pole_n, object.isOre);
+    if (object.isOre) {
+        // check if could get current ore to gain a point
+        if (object.pole_n == _balloon_magnet.pole_n) {
+            _score++;
+            [ore removeFromParent];
+        }
+    } else {
+        // check if current pole to opposite bady guy
+        if (object.pole_n == _balloon_magnet.pole_n) {
+            // avoid bady guy successfully
+            _score += 2;
+        } else {
+            //trap by bad guy
+        }
+        
+    }
+    [_objs_ctrl removeObjectAtIndex:0];
     
-    [ore removeFromParent];
-
-
-    _score++;
+    //
+    
+    //_score++;
     
     _scoreText.string = [NSString stringWithFormat:@"%d", _score];
+
+    // accelerate to increase difficulty
+    if ((_score - (_score % 10)) % 20 == 0) {
+        if (_score > 20)
+            bg_scrollSpeed += 5.f;
+    }
 
     return YES;
 }
@@ -139,7 +162,24 @@ typedef NS_ENUM(NSInteger, ObjType) {
         }
     }
     
-    [_balloon_magnet.physicsBody applyAngularImpulse:0.f];
+    // generate new objects
+    NSMutableArray *offScreenObjects = nil;
+    for (CCNode *obj in _ores) {
+        CGPoint objWorldPosition = [_physicsNode convertToWorldSpace:obj.position];
+        CGPoint objScreenPosition = [self convertToNodeSpace:objWorldPosition];
+        if (objScreenPosition.x < -obj.contentSize.width) {
+            if (!offScreenObjects) {
+                offScreenObjects = [NSMutableArray array];
+            }
+            [offScreenObjects addObject:obj];
+        }
+    }
+    for (CCNode *objToRemove in offScreenObjects) {
+        [objToRemove removeFromParent];
+        [_ores removeObject:objToRemove];
+        // for each removed object, add a new one
+        [self spawnNewOre];
+    }
 }
 
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
@@ -167,23 +207,27 @@ typedef NS_ENUM(NSInteger, ObjType) {
     int obj_choose = arc4random_uniform(ObjNum);
     switch (obj_choose) {
         case OreN:
-            ore = (Ore *)[CCBReader load:@"Ore"];
+            ore = (Ore *)[CCBReader load:@"OreN"];
             ore.pole_n = TRUE;
+            ore.isOre = TRUE;
             break;
             
         case OreS:
             ore = (Ore *)[CCBReader load:@"OreS"];
             ore.pole_n = FALSE;
+            ore.isOre = TRUE;
             break;
             
         case BadguyN:
             ore = (Ore *)[CCBReader load:@"BadguyN"];
             ore.pole_n = TRUE;
+            ore.isOre = FALSE;
             break;
             
         case BadguyS:
             ore = (Ore *)[CCBReader load:@"BadguyS"];
             ore.pole_n = FALSE;
+            ore.isOre = FALSE;
             break;
             
         default:
@@ -196,6 +240,7 @@ typedef NS_ENUM(NSInteger, ObjType) {
     //ore.zOrder = DrawingOrderPipes;
     [_physicsNode addChild:ore];
     [_ores addObject:ore];
+    [_objs_ctrl addObject:ore];
 }
 
 @end

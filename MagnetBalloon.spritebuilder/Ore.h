@@ -11,5 +11,7 @@
 @interface Ore : CCSprite
 
 @property (nonatomic, assign) BOOL pole_n;
+@property (nonatomic, assign) BOOL isOre;
+
 - (id)initOre;
 @end

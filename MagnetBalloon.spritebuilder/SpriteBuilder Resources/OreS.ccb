@@ -115,8 +115,6 @@
 								</array>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>
@@ -148,20 +146,20 @@
 					<key>points</key>
 					<array>
 						<array>
-							<real>0.0</real>
-							<real>0.0</real>
+							<real>5.48046875</real>
+							<real>1.8567708730697632</real>
 						</array>
 						<array>
-							<real>0.0</real>
-							<real>568</real>
+							<real>20.484375</real>
+							<real>1.8567708730697632</real>
 						</array>
 						<array>
-							<real>50</real>
-							<real>568</real>
+							<real>20.484375</real>
+							<real>569.84893798828125</real>
 						</array>
 						<array>
-							<real>50</real>
-							<real>0.0</real>
+							<real>5.48046875</real>
+							<real>569.84893798828125</real>
 						</array>
 					</array>
 				</dict>
@@ -227,6 +225,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
