@@ -46,6 +46,8 @@ typedef NS_ENUM(NSInteger, ObjType) {
     NSInteger _score;
     
     CCLabelTTF *_scoreText;
+    
+    CCButton *_restartButton;
 }
 
 - (void)didLoadFromCCB {
@@ -109,6 +111,7 @@ typedef NS_ENUM(NSInteger, ObjType) {
             _score += 2;
         } else {
             //trap by bad guy
+            _restartButton.visible = TRUE;
         }
         
     }
