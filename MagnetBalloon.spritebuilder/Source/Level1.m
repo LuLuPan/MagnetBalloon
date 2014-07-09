@@ -14,9 +14,16 @@ static const CGFloat fg_scrollSpeed = 120.f;
 static const CGFloat bg_scrollSpeed = 60.f;
 
 // distance between each ore bars
-static const CGFloat firstOrePosition = 280.f;
-static const CGFloat distanceBetweenOres = 160.f;
-NSInteger tmp = 0;
+static const CGFloat firstOrePosition = 80.f;
+static const CGFloat distanceBetweenOres = 100.f;
+
+typedef NS_ENUM(NSInteger, ObjType) {
+    OreN,
+    OreS,
+    BadguyN,
+    BadguyS,
+    ObjNum
+};
 
 @implementation Level1 {
     CCSprite *_balloon;
@@ -57,6 +64,11 @@ NSInteger tmp = 0;
     [self spawnNewOre];
     [self spawnNewOre];
     [self spawnNewOre];
+    [self spawnNewOre];
+    [self spawnNewOre];
+    [self spawnNewOre];
+    [self spawnNewOre];
+    
 }
 
 - (void)onEnter {
@@ -152,14 +164,32 @@ NSInteger tmp = 0;
     }
     
     Ore *ore;
-    if (tmp % 2 == 0) {
-        ore = (Ore *)[CCBReader load:@"BadguyN"];
-        ore.pole_n = TRUE;
-    } else {
-        ore = (Ore *)[CCBReader load:@"Ore"];
-        ore.pole_n = FALSE;
+    int obj_choose = arc4random_uniform(ObjNum);
+    switch (obj_choose) {
+        case OreN:
+            ore = (Ore *)[CCBReader load:@"Ore"];
+            ore.pole_n = TRUE;
+            break;
+            
+        case OreS:
+            ore = (Ore *)[CCBReader load:@"OreS"];
+            ore.pole_n = FALSE;
+            break;
+            
+        case BadguyN:
+            ore = (Ore *)[CCBReader load:@"BadguyN"];
+            ore.pole_n = TRUE;
+            break;
+            
+        case BadguyS:
+            ore = (Ore *)[CCBReader load:@"BadguyS"];
+            ore.pole_n = FALSE;
+            break;
+            
+        default:
+            break;
     }
-    tmp++;
+
     //Ore *ore = [[Ore alloc] initOre];
     ore.position = ccp(previousOreXPosition + distanceBetweenOres, 20);
     //[ore setupRandomPosition];
