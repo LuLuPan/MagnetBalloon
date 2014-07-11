@@ -849,8 +849,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.40000000596046448</real>
+							<real>0.73787528276443481</real>
+							<real>0.44133228063583374</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -864,6 +864,8 @@
 						<string>Magnet.ccb</string>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>
@@ -1603,8 +1605,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>

@@ -12,10 +12,13 @@
 //default speed of balloon in Level1
 static const CGFloat fg_scrollSpeed = 120.f;
 static CGFloat bg_scrollSpeed = 20.f;
+static const CGFloat scrollSpeedMax = 200.f;
+static const NSInteger speedScoreInterval = 40;
 
 // distance between each ore bars
 static const CGFloat firstOrePosition = 200.f;
-static const CGFloat distanceBetweenOres = 90.f;
+static const CGFloat minDistanceBetweenOres = 90.f;
+static const CGFloat maxDistanceBetweenOres = 150.f;
 
 // enum for object type
 typedef NS_ENUM(NSInteger, ObjType) {
@@ -48,6 +51,7 @@ typedef NS_ENUM(NSInteger, ObjType) {
     CCLabelTTF *_scoreText;
     
     CCButton *_restartButton;
+    BOOL _gameOver;
 }
 
 - (void)didLoadFromCCB {
@@ -65,7 +69,9 @@ typedef NS_ENUM(NSInteger, ObjType) {
     
     _ores = [NSMutableArray array];
     _objs_ctrl = [NSMutableArray array];
-    
+    // initial objects on the screen
+    [self spawnNewOre];
+    [self spawnNewOre];
     [self spawnNewOre];
     [self spawnNewOre];
     [self spawnNewOre];
@@ -124,8 +130,8 @@ typedef NS_ENUM(NSInteger, ObjType) {
     _scoreText.string = [NSString stringWithFormat:@"%d", _score];
 
     // accelerate to increase difficulty
-    if ((_score - (_score % 10)) % 20 == 0) {
-        if (_score > 20)
+    if ((_score - (_score % 10)) % speedScoreInterval == 0) {
+        if (_score > speedScoreInterval || bg_scrollSpeed < scrollSpeedMax)
             bg_scrollSpeed += 5.f;
     }
 
@@ -191,7 +197,7 @@ typedef NS_ENUM(NSInteger, ObjType) {
     _balloon_magnet.rotationalSkewY = _balloon_magnet.pole_n ? 180.f : 0.f;
     _balloon_magnet.pole_n = _balloon_magnet.pole_n ? FALSE : TRUE;
     
-    CCLOG(@"Magnet Pole: %d", _balloon_magnet.pole_n);
+    //CCLOG(@"Magnet Pole: %d", _balloon_magnet.pole_n);
 }
 
 
@@ -236,9 +242,13 @@ typedef NS_ENUM(NSInteger, ObjType) {
         default:
             break;
     }
+    
+    CGFloat distanceBetweenOres = minDistanceBetweenOres +
+            arc4random_uniform(maxDistanceBetweenOres - minDistanceBetweenOres);
 
     //Ore *ore = [[Ore alloc] initOre];
     ore.position = ccp(previousOreXPosition + distanceBetweenOres, 20);
+    CCLOG(@"Ore Pos: %f", (previousOreXPosition + distanceBetweenOres));
     //[ore setupRandomPosition];
     //ore.zOrder = DrawingOrderPipes;
     [_physicsNode addChild:ore];
