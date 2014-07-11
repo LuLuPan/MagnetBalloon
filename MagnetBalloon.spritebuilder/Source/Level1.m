@@ -11,14 +11,17 @@
 #import "Ore.h"
 //default speed of balloon in Level1
 static const CGFloat fg_scrollSpeed = 120.f;
-static CGFloat bg_scrollSpeed = 20.f;
+static CGFloat bg_scrollSpeed = 30.f;
 static const CGFloat scrollSpeedMax = 200.f;
-static const NSInteger speedScoreInterval = 40;
+static const NSInteger speedScoreInterval = 20;
+static const CGFloat speedInterval = 5.0f;
+static NSInteger preSpeedLevel = 0;
 
 // distance between each ore bars
 static const CGFloat firstOrePosition = 200.f;
 static const CGFloat minDistanceBetweenOres = 90.f;
 static const CGFloat maxDistanceBetweenOres = 150.f;
+
 
 // enum for object type
 typedef NS_ENUM(NSInteger, ObjType) {
@@ -130,11 +133,12 @@ typedef NS_ENUM(NSInteger, ObjType) {
     _scoreText.string = [NSString stringWithFormat:@"%d", _score];
 
     // accelerate to increase difficulty
-    if ((_score - (_score % 10)) % speedScoreInterval == 0) {
-        if (_score > speedScoreInterval || bg_scrollSpeed < scrollSpeedMax)
-            bg_scrollSpeed += 5.f;
+    NSInteger speedLevel = _score / speedScoreInterval;
+    if (speedLevel >= 1 && speedLevel > preSpeedLevel) {
+        bg_scrollSpeed += speedInterval;
+        preSpeedLevel++;
     }
-
+    
     return YES;
 }
 
