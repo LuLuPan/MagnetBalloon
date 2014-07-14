@@ -12,6 +12,7 @@
 //default speed of balloon in Level1
 static const CGFloat fg_scrollSpeed = 120.f;
 static CGFloat bg_scrollSpeed = 30.f;
+static CGFloat cur_scrollSpeed = 30.f;
 static const CGFloat scrollSpeedMax = 200.f;
 static const NSInteger speedScoreInterval = 20;
 static const CGFloat speedInterval = 5.0f;
@@ -21,7 +22,6 @@ static NSInteger preSpeedLevel = 0;
 static const CGFloat firstOrePosition = 200.f;
 static const CGFloat minDistanceBetweenOres = 90.f;
 static const CGFloat maxDistanceBetweenOres = 150.f;
-
 
 // enum for object type
 typedef NS_ENUM(NSInteger, ObjType) {
@@ -54,7 +54,9 @@ typedef NS_ENUM(NSInteger, ObjType) {
     CCLabelTTF *_scoreText;
     
     CCButton *_restartButton;
+    CCButton *_pauseButton;
     BOOL _gameOver;
+    BOOL _paused;
 }
 
 - (void)didLoadFromCCB {
@@ -79,6 +81,8 @@ typedef NS_ENUM(NSInteger, ObjType) {
     [self spawnNewOre];
     [self spawnNewOre];
     [self spawnNewOre];
+    
+    _paused = FALSE;
 }
 
 - (void)onEnter {
@@ -119,16 +123,14 @@ typedef NS_ENUM(NSInteger, ObjType) {
             // avoid bady guy successfully
             _score += 2;
         } else {
+            // pause scene movement
+            //bg_scrollSpeed = 0.f;
             //trap by bad guy
             _restartButton.visible = TRUE;
         }
-        
     }
+    
     [_objs_ctrl removeObjectAtIndex:0];
-    
-    //
-    
-    //_score++;
     
     _scoreText.string = [NSString stringWithFormat:@"%d", _score];
 
@@ -259,5 +261,17 @@ typedef NS_ENUM(NSInteger, ObjType) {
     [_ores addObject:ore];
     [_objs_ctrl addObject:ore];
 }
+
+- (void)pause {
+    if (_paused == FALSE) {
+        cur_scrollSpeed = bg_scrollSpeed;
+        bg_scrollSpeed = 0.f;
+        _paused = TRUE;
+    } else {
+        bg_scrollSpeed = cur_scrollSpeed;
+        _paused = FALSE;
+    }
+}
+
 
 @end
