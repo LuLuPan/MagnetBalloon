@@ -11,6 +11,7 @@
 #import "Ore.h"
 //default speed of balloon in Level1
 static const CGFloat fg_scrollSpeed = 120.f;
+static const CGFloat init_scrollSpeed = 30.f;
 static CGFloat bg_scrollSpeed = 30.f;
 static CGFloat cur_scrollSpeed = 30.f;
 static const CGFloat scrollSpeedMax = 200.f;
@@ -63,7 +64,7 @@ typedef NS_ENUM(NSInteger, ObjType) {
     _deserts = @[_desert1, _desert2];
     _westbgs = @[_westbg1, _westbg2];
 
-    
+    bg_scrollSpeed = init_scrollSpeed;
     //_balloon_magnet = [[Magnet alloc] initMagnet];
     _physicsNode.collisionDelegate = self;
     //_physicsNode.debugDraw = TRUE;
@@ -83,6 +84,8 @@ typedef NS_ENUM(NSInteger, ObjType) {
     [self spawnNewOre];
     
     _paused = FALSE;
+    _gameOver = NO;
+    _restartButton.visible = NO;
 }
 
 - (void)onEnter {
@@ -123,10 +126,8 @@ typedef NS_ENUM(NSInteger, ObjType) {
             // avoid bady guy successfully
             _score += 2;
         } else {
-            // pause scene movement
-            //bg_scrollSpeed = 0.f;
-            //trap by bad guy
-            _restartButton.visible = TRUE;
+            // trap by bad guy, restart
+            [self gameOver];
         }
     }
     
@@ -271,6 +272,20 @@ typedef NS_ENUM(NSInteger, ObjType) {
         bg_scrollSpeed = cur_scrollSpeed;
         _paused = FALSE;
     }
+}
+
+// Trap by bad guy, need to restart game
+- (void)gameOver {
+    if (!_gameOver) {
+        _restartButton.visible = TRUE;
+        bg_scrollSpeed = 0.f;
+        _gameOver = TRUE;
+    }
+}
+
+- (void)restart {
+    CCScene *scene = [CCBReader loadAsScene:@"Level1"];
+    [[CCDirector sharedDirector]replaceScene:scene];
 }
 
 
