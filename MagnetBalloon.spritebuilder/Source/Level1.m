@@ -11,9 +11,9 @@
 #import "Ore.h"
 //default speed of balloon in Level1
 static const CGFloat fg_scrollSpeed = 120.f;
-static const CGFloat init_scrollSpeed = 30.f;
-static CGFloat bg_scrollSpeed = 30.f;
-static CGFloat cur_scrollSpeed = 30.f;
+static const CGFloat init_scrollSpeed = 40.f;
+static CGFloat bg_scrollSpeed = 40.f;
+static CGFloat cur_scrollSpeed = 40.f;
 static const CGFloat scrollSpeedMax = 200.f;
 static const NSInteger speedScoreInterval = 20;
 static const CGFloat speedInterval = 5.0f;
@@ -58,6 +58,8 @@ typedef NS_ENUM(NSInteger, ObjType) {
     CCButton *_pauseButton;
     BOOL _gameOver;
     BOOL _paused;
+    
+    CCNode *over;
 }
 
 - (void)didLoadFromCCB {
@@ -100,18 +102,7 @@ typedef NS_ENUM(NSInteger, ObjType) {
 
 #pragma mark - CCPhysicsCollisionDelegate
 
-- (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair balloon:(CCNode *)balloon ore:(CCNode *)ore {
-    
-    if([ore isKindOfClass:[Ore class]])
-    {
-        CCLOG(@"++++++++++++++++++++++++++");
-    }
-    
-    if([ore isMemberOfClass:[Ore class]])
-    {
-        CCLOG(@"--------------------------");
-    }
-    
+- (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair balloon:(CCNode *)balloon ore:(CCNode *)ore {    
     Ore* object = [_objs_ctrl objectAtIndex:0];
     CCLOG(@"Object: %d, %d", object.pole_n, object.isOre);
     if (object.isOre) {
@@ -148,8 +139,6 @@ typedef NS_ENUM(NSInteger, ObjType) {
 - (void)update:(CCTime)delta {
     // update balloon position
     _balloon.position = ccp(_balloon.position.x + delta * bg_scrollSpeed, _balloon.position.y);
-
-    //_balloon_magnet.position = ccp(_balloon_magnet.position.x + delta * fg_scrollSpeed, _balloon_magnet.position.y);
 
     // update physics nodes position to create camera	
     _physicsNode.position = ccp(_physicsNode.position.x - (bg_scrollSpeed *delta), _physicsNode.position.y);
@@ -280,10 +269,15 @@ typedef NS_ENUM(NSInteger, ObjType) {
         _restartButton.visible = TRUE;
         bg_scrollSpeed = 0.f;
         _gameOver = TRUE;
+        
+        over = (CCNode *)[CCBReader loadAsScene:@"GameOver"];
+        over.position = ccp(_balloon.position.x + 70.f, 250.f);
+        [_physicsNode addChild:over];
     }
 }
 
 - (void)restart {
+    [over removeFromParent];
     CCScene *scene = [CCBReader loadAsScene:@"Level1"];
     [[CCDirector sharedDirector]replaceScene:scene];
 }

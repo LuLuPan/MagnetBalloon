@@ -89,15 +89,9 @@
 			<true/>
 		</dict>
 		<key>MainScene.ccbi</key>
-		<dict>
-			<key>isDirty</key>
-			<true/>
-		</dict>
+		<dict/>
 		<key>Ore.ccbi</key>
-		<dict>
-			<key>isDirty</key>
-			<true/>
-		</dict>
+		<dict/>
 		<key>Sprites</key>
 		<dict/>
 		<key>ccbResources</key>
