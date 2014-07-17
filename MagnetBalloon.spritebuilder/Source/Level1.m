@@ -109,6 +109,13 @@ typedef NS_ENUM(NSInteger, ObjType) {
         // check if could get current ore to gain a point
         if (object.pole_n == _balloon_magnet.pole_n) {
             _score++;
+            CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"disappear"];
+            // make the particle effect clean itself up, once it is completed
+            explosion.autoRemoveOnFinish = TRUE;
+            // place the particle effect on the seals position
+            explosion.position = object.position;
+            // add the particle effect to the same node the seal is on
+            [object.parent addChild:explosion];
             [ore removeFromParent];
         }
     } else {
@@ -269,6 +276,14 @@ typedef NS_ENUM(NSInteger, ObjType) {
         _restartButton.visible = TRUE;
         bg_scrollSpeed = 0.f;
         _gameOver = TRUE;
+        
+        CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"over"];
+        // make the particle effect clean itself up, once it is completed
+        explosion.autoRemoveOnFinish = TRUE;
+        // place the particle effect on the seals position
+        explosion.position = _balloon.position;
+        // add the particle effect to the same node the seal is on
+        [_balloon.parent addChild:explosion];
         
         over = (CCNode *)[CCBReader loadAsScene:@"GameOver"];
         over.position = ccp(_balloon.position.x + 70.f, 250.f);
