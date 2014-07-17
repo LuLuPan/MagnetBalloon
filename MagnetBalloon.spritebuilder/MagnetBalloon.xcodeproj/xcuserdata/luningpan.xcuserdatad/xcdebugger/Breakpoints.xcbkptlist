@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Source/Level1.m"
-         timestampString = "427268328.831827"
+         timestampString = "427268636.958544"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "308"
-         endingLineNumber = "308"
+         startingLineNumber = "259"
+         endingLineNumber = "259"
          landmarkName = "-spawnNewOre"
          landmarkType = "5">
       </FileBreakpoint>
@@ -99,11 +99,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Source/Level1.m"
-         timestampString = "427268328.831827"
+         timestampString = "427268787.765477"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "322"
-         endingLineNumber = "322"
+         startingLineNumber = "331"
+         endingLineNumber = "331"
          landmarkName = "-pause"
          landmarkType = "5">
       </FileBreakpoint>
@@ -112,26 +112,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Source/Level1.m"
-         timestampString = "427268328.831827"
+         timestampString = "427268787.765477"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "318"
-         endingLineNumber = "318"
+         startingLineNumber = "327"
+         endingLineNumber = "327"
          landmarkName = "-pause"
          landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Source/Level1.m"
-         timestampString = "427268328.831827"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "351"
-         endingLineNumber = "351"
-         landmarkName = "@implementation Level1"
-         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -144,32 +131,6 @@
          startingLineNumber = "150"
          endingLineNumber = "150"
          landmarkName = "-ccPhysicsCollisionBegin:balloon:ore:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Source/Level1.m"
-         timestampString = "427268328.831827"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "298"
-         endingLineNumber = "298"
-         landmarkName = "-spawnNewOre"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Source/Level1.m"
-         timestampString = "427268328.831827"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "296"
-         endingLineNumber = "296"
-         landmarkName = "-spawnNewOre"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint

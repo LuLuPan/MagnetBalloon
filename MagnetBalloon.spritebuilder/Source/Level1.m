@@ -248,8 +248,27 @@ typedef NS_ENUM(NSInteger, ObjType) {
     }
     
     // generarte object randomly
+    Ore *ore = [self generateObj];
+    CGFloat distanceBetweenOres = minDistanceBetweenOres +
+            arc4random_uniform(maxDistanceBetweenOres - minDistanceBetweenOres);
+
+    //Ore *ore = [[Ore alloc] initOre];
+    ore.position = ccp(previousOreXPosition + distanceBetweenOres, 20);
+    CCLOG(@"Ore Pos: %f", (previousOreXPosition + distanceBetweenOres));
+    //[ore setupRandomPosition];
+    //ore.zOrder = DrawingOrderPipes;
+    [_physicsNode addChild:ore];
+    [_ores addObject:ore];
+    [_objs_ctrl addObject:ore];
+}
+
+- (Ore *)generateObj {
     Ore *ore = NULL;
     int obj_choose = arc4random_uniform(ObjNum);
+    
+    if ((_score < 20 || _protected) && (obj_choose > BadguyS))
+        obj_choose -= 2;
+    
     switch (obj_choose) {
         case OreN:
             ore = (Ore *)[CCBReader load:@"OreN"];
@@ -285,7 +304,7 @@ typedef NS_ENUM(NSInteger, ObjType) {
             ore.isOre = FALSE;
             ore.isProtection = TRUE;
             break;
-        
+            
         case ProtectionBlue:
             ore = (Ore *)[CCBReader load:@"ProtectionBlue"];
             ore.pole_n = FALSE;
@@ -298,17 +317,7 @@ typedef NS_ENUM(NSInteger, ObjType) {
             break;
     }
     
-    CGFloat distanceBetweenOres = minDistanceBetweenOres +
-            arc4random_uniform(maxDistanceBetweenOres - minDistanceBetweenOres);
-
-    //Ore *ore = [[Ore alloc] initOre];
-    ore.position = ccp(previousOreXPosition + distanceBetweenOres, 20);
-    CCLOG(@"Ore Pos: %f", (previousOreXPosition + distanceBetweenOres));
-    //[ore setupRandomPosition];
-    //ore.zOrder = DrawingOrderPipes;
-    [_physicsNode addChild:ore];
-    [_ores addObject:ore];
-    [_objs_ctrl addObject:ore];
+    return ore;
 }
 
 - (void)pause {
@@ -348,6 +357,5 @@ typedef NS_ENUM(NSInteger, ObjType) {
     CCScene *scene = [CCBReader loadAsScene:@"Level1"];
     [[CCDirector sharedDirector]replaceScene:scene];
 }
-
 
 @end
