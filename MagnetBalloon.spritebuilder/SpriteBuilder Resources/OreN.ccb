@@ -146,20 +146,20 @@
 					<key>points</key>
 					<array>
 						<array>
-							<real>0.0</real>
-							<real>0.0</real>
+							<real>12.32421875</real>
+							<real>-2.40234375</real>
 						</array>
 						<array>
-							<real>0.0</real>
-							<real>400</real>
+							<real>27.31640625</real>
+							<real>-2.3671875</real>
 						</array>
 						<array>
-							<real>30</real>
-							<real>400</real>
+							<real>27.31640625</real>
+							<real>457.55078125</real>
 						</array>
 						<array>
-							<real>30</real>
-							<real>0.0</real>
+							<real>12.32421875</real>
+							<real>457.5546875</real>
 						</array>
 					</array>
 				</dict>
@@ -225,6 +225,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
@@ -266,7 +268,7 @@
 				<string>Size</string>
 				<key>value</key>
 				<array>
-					<real>50</real>
+					<real>30</real>
 					<real>568</real>
 					<integer>0</integer>
 					<integer>0</integer>

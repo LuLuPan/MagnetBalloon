@@ -12,6 +12,7 @@
 
 @property (nonatomic, assign) BOOL pole_n;
 @property (nonatomic, assign) BOOL isOre;
+@property (nonatomic, assign) BOOL isProtection;
 
 - (id)initOre;
 @end

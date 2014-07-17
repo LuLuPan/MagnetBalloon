@@ -18,6 +18,8 @@ static const CGFloat scrollSpeedMax = 200.f;
 static const NSInteger speedScoreInterval = 20;
 static const CGFloat speedInterval = 5.0f;
 static NSInteger preSpeedLevel = 0;
+// protected number of badguy
+static const NSInteger protectionLimit = 5;
 
 // distance between each ore bars
 static const CGFloat firstOrePosition = 200.f;
@@ -30,6 +32,8 @@ typedef NS_ENUM(NSInteger, ObjType) {
     OreS,
     BadguyN,
     BadguyS,
+    ProtectionRed,
+    ProtectionBlue,
     ObjNum
 };
 
@@ -58,7 +62,11 @@ typedef NS_ENUM(NSInteger, ObjType) {
     CCButton *_pauseButton;
     BOOL _gameOver;
     BOOL _paused;
+    // be protected from badguy
+    BOOL _protected;
+    NSInteger _protectedCount;
     
+    CCParticleSystem *_protectCircle;
     CCNode *over;
 }
 
@@ -87,6 +95,8 @@ typedef NS_ENUM(NSInteger, ObjType) {
     
     _paused = FALSE;
     _gameOver = NO;
+    _protected = FALSE;
+    _protectedCount = 0;
     _restartButton.visible = NO;
 }
 
@@ -104,8 +114,8 @@ typedef NS_ENUM(NSInteger, ObjType) {
 
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair balloon:(CCNode *)balloon ore:(CCNode *)ore {    
     Ore* object = [_objs_ctrl objectAtIndex:0];
-    CCLOG(@"Object: %d, %d", object.pole_n, object.isOre);
-    if (object.isOre) {
+    CCLOG(@"Object: %d, %d, %d", object.pole_n, object.isOre, object.isProtection);
+    if (object.isOre || object.isProtection) {
         // check if could get current ore to gain a point
         if (object.pole_n == _balloon_magnet.pole_n) {
             _score++;
@@ -117,6 +127,17 @@ typedef NS_ENUM(NSInteger, ObjType) {
             // add the particle effect to the same node the seal is on
             [object.parent addChild:explosion];
             [ore removeFromParent];
+            
+            // get a protection circile?
+            if (object.isProtection && !_protected) {
+                _protected = TRUE;
+                _protectCircle = (CCParticleSystem *)[CCBReader load:@"ProtectCircle"];
+                _protectCircle.duration = -1;
+                // place the particle effect on the seals position
+                _protectCircle.position = _balloon.position;
+                // add the particle effect to the same node the seal is on
+                [_balloon.parent addChild:_protectCircle];
+            }
         }
     } else {
         // check if current pole to opposite bady guy
@@ -125,7 +146,10 @@ typedef NS_ENUM(NSInteger, ObjType) {
             _score += 2;
         } else {
             // trap by bad guy, restart
-            [self gameOver];
+            if (!_protected)
+                [self gameOver];
+            else
+                _protectedCount++;
         }
     }
     
@@ -146,7 +170,15 @@ typedef NS_ENUM(NSInteger, ObjType) {
 - (void)update:(CCTime)delta {
     // update balloon position
     _balloon.position = ccp(_balloon.position.x + delta * bg_scrollSpeed, _balloon.position.y);
-
+    if (_protected) {
+        _protectCircle.position = _balloon.position;
+        if (_protectedCount >= protectionLimit) {
+            _protected = FALSE;
+            _protectedCount = 0;
+            [_protectCircle removeFromParent];
+        }
+    }
+    
     // update physics nodes position to create camera	
     _physicsNode.position = ccp(_physicsNode.position.x - (bg_scrollSpeed *delta), _physicsNode.position.y);
 
@@ -215,34 +247,54 @@ typedef NS_ENUM(NSInteger, ObjType) {
         previousOreXPosition = firstOrePosition;
     }
     
-    Ore *ore;
+    // generarte object randomly
+    Ore *ore = NULL;
     int obj_choose = arc4random_uniform(ObjNum);
     switch (obj_choose) {
         case OreN:
             ore = (Ore *)[CCBReader load:@"OreN"];
             ore.pole_n = TRUE;
             ore.isOre = TRUE;
+            ore.isProtection = FALSE;
             break;
             
         case OreS:
             ore = (Ore *)[CCBReader load:@"OreS"];
             ore.pole_n = FALSE;
             ore.isOre = TRUE;
+            ore.isProtection = FALSE;
             break;
             
         case BadguyN:
             ore = (Ore *)[CCBReader load:@"BadguyN"];
             ore.pole_n = TRUE;
             ore.isOre = FALSE;
+            ore.isProtection = FALSE;
             break;
             
         case BadguyS:
             ore = (Ore *)[CCBReader load:@"BadguyS"];
             ore.pole_n = FALSE;
             ore.isOre = FALSE;
+            ore.isProtection = FALSE;
+            break;
+            
+        case ProtectionRed:
+            ore = (Ore *)[CCBReader load:@"ProtectionRed"];
+            ore.pole_n = TRUE;
+            ore.isOre = FALSE;
+            ore.isProtection = TRUE;
+            break;
+        
+        case ProtectionBlue:
+            ore = (Ore *)[CCBReader load:@"ProtectionBlue"];
+            ore.pole_n = FALSE;
+            ore.isOre = FALSE;
+            ore.isProtection = TRUE;
             break;
             
         default:
+            ore = NULL;
             break;
     }
     
