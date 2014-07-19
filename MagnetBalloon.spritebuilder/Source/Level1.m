@@ -77,7 +77,7 @@ typedef NS_ENUM(NSInteger, ObjType) {
     bg_scrollSpeed = init_scrollSpeed;
     //_balloon_magnet = [[Magnet alloc] initMagnet];
     _physicsNode.collisionDelegate = self;
-    //_physicsNode.debugDraw = TRUE;
+    _physicsNode.debugDraw = TRUE;
     
     
     _balloon.physicsBody.collisionType = @"balloon";
