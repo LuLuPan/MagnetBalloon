@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AB826C10196A800100F304CD /* Ore.m in Sources */ = {isa = PBXBuildFile; fileRef = AB826C0F196A800100F304CD /* Ore.m */; };
 		AB830F24196A1ACC0060A1E2 /* Magnet.m in Sources */ = {isa = PBXBuildFile; fileRef = AB830F23196A1ACC0060A1E2 /* Magnet.m */; };
+		AB87DC16197B10520083928A /* Instructions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB87DC15197B10520083928A /* Instructions.m */; };
 		AB8833671969C48900FAB7E4 /* Level1.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8833661969C48900FAB7E4 /* Level1.m */; };
 		B71F5911188484E7003F4D28 /* iPad-old.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5907188484E7003F4D28 /* iPad-old.png */; };
 		B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5908188484E7003F4D28 /* iPad-old@2x.png */; };
@@ -62,6 +63,8 @@
 		AB826C0F196A800100F304CD /* Ore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ore.m; sourceTree = "<group>"; };
 		AB830F22196A1ACC0060A1E2 /* Magnet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Magnet.h; path = Source/Magnet.h; sourceTree = "<group>"; };
 		AB830F23196A1ACC0060A1E2 /* Magnet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Magnet.m; path = Source/Magnet.m; sourceTree = "<group>"; };
+		AB87DC14197B10520083928A /* Instructions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Instructions.h; path = Source/Instructions.h; sourceTree = "<group>"; };
+		AB87DC15197B10520083928A /* Instructions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Instructions.m; path = Source/Instructions.m; sourceTree = "<group>"; };
 		AB8833651969C48900FAB7E4 /* Level1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Level1.h; path = Source/Level1.h; sourceTree = "<group>"; };
 		AB8833661969C48900FAB7E4 /* Level1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Level1.m; path = Source/Level1.m; sourceTree = "<group>"; };
 		B71F5907188484E7003F4D28 /* iPad-old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old.png"; path = "Icons/iPad-old.png"; sourceTree = "<group>"; };
@@ -141,6 +144,8 @@
 				AB830F23196A1ACC0060A1E2 /* Magnet.m */,
 				AB826C0E196A800100F304CD /* Ore.h */,
 				AB826C0F196A800100F304CD /* Ore.m */,
+				AB87DC14197B10520083928A /* Instructions.h */,
+				AB87DC15197B10520083928A /* Instructions.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -339,6 +344,7 @@
 				AB8833671969C48900FAB7E4 /* Level1.m in Sources */,
 				AB830F24196A1ACC0060A1E2 /* Magnet.m in Sources */,
 				AB826C10196A800100F304CD /* Ore.m in Sources */,
+				AB87DC16197B10520083928A /* Instructions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
