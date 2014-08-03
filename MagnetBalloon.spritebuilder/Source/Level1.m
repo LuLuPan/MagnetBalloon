@@ -75,10 +75,8 @@ typedef NS_ENUM(NSInteger, ObjType) {
     _westbgs = @[_westbg1, _westbg2];
 
     bg_scrollSpeed = init_scrollSpeed;
-    //_balloon_magnet = [[Magnet alloc] initMagnet];
     _physicsNode.collisionDelegate = self;
     //_physicsNode.debugDraw = TRUE;
-    
     
     _balloon.physicsBody.collisionType = @"balloon";
     _balloon.physicsBody.sensor = YES;
@@ -128,7 +126,7 @@ typedef NS_ENUM(NSInteger, ObjType) {
             [object.parent addChild:explosion];
             [ore removeFromParent];
             
-            // get a protection circile?
+            // get a protection circle?
             if (object.isProtection && !_protected) {
                 _protected = TRUE;
                 _protectCircle = (CCParticleSystem *)[CCBReader load:@"ProtectCircle"];
@@ -218,6 +216,7 @@ typedef NS_ENUM(NSInteger, ObjType) {
             [offScreenObjects addObject:obj];
         }
     }
+    
     for (CCNode *objToRemove in offScreenObjects) {
         [objToRemove removeFromParent];
         [_ores removeObject:objToRemove];
@@ -254,8 +253,8 @@ typedef NS_ENUM(NSInteger, ObjType) {
 
     //Ore *ore = [[Ore alloc] initOre];
     ore.position = ccp(previousOreXPosition + distanceBetweenOres, 20);
-    CCLOG(@"Ore Pos: %f", (previousOreXPosition + distanceBetweenOres));
-    //[ore setupRandomPosition];
+    //CCLOG(@"Ore Pos: %f", (previousOreXPosition + distanceBetweenOres));
+
     //ore.zOrder = DrawingOrderPipes;
     [_physicsNode addChild:ore];
     [_ores addObject:ore];
@@ -266,9 +265,11 @@ typedef NS_ENUM(NSInteger, ObjType) {
     Ore *ore = NULL;
     int obj_choose = arc4random_uniform(ObjNum);
     
+    // do not show protection under score threshold
     if ((_score < 20 || _protected) && (obj_choose > BadguyS))
         obj_choose -= 2;
     
+    // generate objects with different attributes
     switch (obj_choose) {
         case OreN:
             ore = (Ore *)[CCBReader load:@"OreN"];
