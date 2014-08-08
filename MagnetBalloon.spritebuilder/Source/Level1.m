@@ -12,11 +12,11 @@
 //default speed of balloon in Level1
 static const CGFloat fg_scrollSpeed = 120.f;
 static const CGFloat init_scrollSpeed = 40.f;
-static CGFloat bg_scrollSpeed = 40.f;
-static CGFloat cur_scrollSpeed = 40.f;
+static CGFloat bg_scrollSpeed = 50.f;
+static CGFloat cur_scrollSpeed = 50.f;
 static const CGFloat scrollSpeedMax = 200.f;
 static const NSInteger speedScoreInterval = 20;
-static const CGFloat speedInterval = 5.0f;
+static const CGFloat speedInterval = 10.0f;
 static NSInteger preSpeedLevel = 0;
 // protected number of badguy
 static const NSInteger protectionLimit = 5;
@@ -112,7 +112,7 @@ typedef NS_ENUM(NSInteger, ObjType) {
 
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair balloon:(CCNode *)balloon ore:(CCNode *)ore {    
     Ore* object = [_objs_ctrl objectAtIndex:0];
-    CCLOG(@"Object: %d, %d, %d", object.pole_n, object.isOre, object.isProtection);
+    //CCLOG(@"Object: %d, %d, %d", object.pole_n, object.isOre, object.isProtection);
     if (object.isOre || object.isProtection) {
         // check if could get current ore to gain a point
         if (object.pole_n == _balloon_magnet.pole_n) {
@@ -155,10 +155,11 @@ typedef NS_ENUM(NSInteger, ObjType) {
     
     _scoreText.string = [NSString stringWithFormat:@"%d", _score];
 
-    // accelerate to increase difficulty
+    // accelerate speed to increase difficulty
     NSInteger speedLevel = _score / speedScoreInterval;
-    if (speedLevel >= 1 && speedLevel > preSpeedLevel) {
+    if (speedLevel >= 1 && speedLevel > preSpeedLevel && bg_scrollSpeed <= scrollSpeedMax) {
         bg_scrollSpeed += speedInterval;
+        CCLOG(@"Speed: %f", bg_scrollSpeed);
         preSpeedLevel++;
     }
     

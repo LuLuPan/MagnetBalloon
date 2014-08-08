@@ -13,8 +13,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "104"
          endingLineNumber = "104"
-         landmarkName = "-onEnter"
-         landmarkType = "5">
+         landmarkName = "@implementation Level1"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -26,8 +26,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "113"
          endingLineNumber = "113"
-         landmarkName = "@implementation Level1"
-         landmarkType = "3">
+         landmarkName = "-ccPhysicsCollisionBegin:balloon:ore:"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Source/Level1.m"
-         timestampString = "427268636.958544"
+         timestampString = "429173223.719929"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "259"
-         endingLineNumber = "259"
+         startingLineNumber = "260"
+         endingLineNumber = "260"
          landmarkName = "-spawnNewOre"
          landmarkType = "5">
       </FileBreakpoint>
@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Source/Level1.m"
-         timestampString = "427268328.831827"
+         timestampString = "429173223.719929"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "244"
-         endingLineNumber = "244"
+         startingLineNumber = "245"
+         endingLineNumber = "245"
          landmarkName = "-spawnNewOre"
          landmarkType = "5">
       </FileBreakpoint>
@@ -99,11 +99,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Source/Level1.m"
-         timestampString = "427268787.765477"
+         timestampString = "429173223.719929"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "331"
-         endingLineNumber = "331"
+         startingLineNumber = "332"
+         endingLineNumber = "332"
          landmarkName = "-pause"
          landmarkType = "5">
       </FileBreakpoint>
@@ -112,11 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Source/Level1.m"
-         timestampString = "427268787.765477"
+         timestampString = "429173223.719929"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "327"
-         endingLineNumber = "327"
+         startingLineNumber = "328"
+         endingLineNumber = "328"
          landmarkName = "-pause"
          landmarkType = "5">
       </FileBreakpoint>
@@ -138,11 +138,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Source/Level1.m"
-         timestampString = "427268328.831827"
+         timestampString = "429173223.719929"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "176"
-         endingLineNumber = "176"
+         startingLineNumber = "177"
+         endingLineNumber = "177"
          landmarkName = "-update:"
          landmarkType = "5">
       </FileBreakpoint>
