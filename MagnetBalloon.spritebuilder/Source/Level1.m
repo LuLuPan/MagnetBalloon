@@ -25,6 +25,7 @@ static const NSInteger protectionLimit = 5;
 static const CGFloat firstOrePosition = 200.f;
 static const CGFloat minDistanceBetweenOres = 90.f;
 static const CGFloat maxDistanceBetweenOres = 150.f;
+static BOOL firstRound = TRUE;
 
 // enum for object type
 typedef NS_ENUM(NSInteger, ObjType) {
@@ -68,6 +69,12 @@ typedef NS_ENUM(NSInteger, ObjType) {
     
     CCParticleSystem *_protectCircle;
     CCNode *over;
+    
+    CCNode *_instruct1;
+    CCNode *_instruct2;
+    CCNode *_instruct3;
+    CCNode *_instruct4;
+    CCNode *_instruct5;
 }
 
 - (void)didLoadFromCCB {
@@ -95,6 +102,13 @@ typedef NS_ENUM(NSInteger, ObjType) {
     _protected = FALSE;
     _protectedCount = 0;
     _restartButton.visible = NO;
+    if (firstRound == FALSE) {
+        [_instruct1 removeFromParent];
+        [_instruct2 removeFromParent];
+        [_instruct3 removeFromParent];
+        [_instruct4 removeFromParent];
+        [_instruct5 removeFromParent];
+    }
 }
 
 - (void)onEnter {
@@ -105,6 +119,17 @@ typedef NS_ENUM(NSInteger, ObjType) {
     [super onEnterTransitionDidFinish];
     
     self.userInteractionEnabled = YES;
+    // only show instructions for the first game round
+    if (firstRound) {
+        
+        [NSThread sleepForTimeInterval:3];
+        firstRound = FALSE;
+        [_instruct1 removeFromParent];
+        [_instruct2 removeFromParent];
+        [_instruct3 removeFromParent];
+        [_instruct4 removeFromParent];
+        [_instruct5 removeFromParent];
+    }
 }
 
 #pragma mark - CCPhysicsCollisionDelegate
