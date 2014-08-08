@@ -76,7 +76,6 @@ typedef NS_ENUM(NSInteger, ObjType) {
 
     bg_scrollSpeed = init_scrollSpeed;
     _physicsNode.collisionDelegate = self;
-    //_physicsNode.debugDraw = TRUE;
     
     _balloon.physicsBody.collisionType = @"balloon";
     _balloon.physicsBody.sensor = YES;
@@ -112,7 +111,6 @@ typedef NS_ENUM(NSInteger, ObjType) {
 
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair balloon:(CCNode *)balloon ore:(CCNode *)ore {    
     Ore* object = [_objs_ctrl objectAtIndex:0];
-    //CCLOG(@"Object: %d, %d, %d", object.pole_n, object.isOre, object.isProtection);
     if (object.isOre || object.isProtection) {
         // check if could get current ore to gain a point
         if (object.pole_n == _balloon_magnet.pole_n) {
@@ -159,7 +157,6 @@ typedef NS_ENUM(NSInteger, ObjType) {
     NSInteger speedLevel = _score / speedScoreInterval;
     if (speedLevel >= 1 && speedLevel > preSpeedLevel && bg_scrollSpeed <= scrollSpeedMax) {
         bg_scrollSpeed += speedInterval;
-        CCLOG(@"Speed: %f", bg_scrollSpeed);
         preSpeedLevel++;
     }
     
@@ -231,8 +228,6 @@ typedef NS_ENUM(NSInteger, ObjType) {
     _balloon_magnet.rotationalSkewX = _balloon_magnet.pole_n ? 180.f : 0.f;
     _balloon_magnet.rotationalSkewY = _balloon_magnet.pole_n ? 180.f : 0.f;
     _balloon_magnet.pole_n = _balloon_magnet.pole_n ? FALSE : TRUE;
-    
-    //CCLOG(@"Magnet Pole: %d", _balloon_magnet.pole_n);
 }
 
 
@@ -252,15 +247,14 @@ typedef NS_ENUM(NSInteger, ObjType) {
     CGFloat distanceBetweenOres = minDistanceBetweenOres +
             arc4random_uniform(maxDistanceBetweenOres - minDistanceBetweenOres);
 
-    //Ore *ore = [[Ore alloc] initOre];
     ore.position = ccp(previousOreXPosition + distanceBetweenOres, 20);
-    //CCLOG(@"Ore Pos: %f", (previousOreXPosition + distanceBetweenOres));
 
-    //ore.zOrder = DrawingOrderPipes;
     [_physicsNode addChild:ore];
     [_ores addObject:ore];
     [_objs_ctrl addObject:ore];
 }
+
+#pragma mark - Objects generate randomly
 
 - (Ore *)generateObj {
     Ore *ore = NULL;
