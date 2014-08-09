@@ -26,6 +26,7 @@ static const CGFloat firstOrePosition = 200.f;
 static const CGFloat minDistanceBetweenOres = 90.f;
 static const CGFloat maxDistanceBetweenOres = 150.f;
 static BOOL firstRound = TRUE;
+static NSInteger counterDown = 3;
 
 // enum for object type
 typedef NS_ENUM(NSInteger, ObjType) {
@@ -39,7 +40,7 @@ typedef NS_ENUM(NSInteger, ObjType) {
 };
 
 @implementation Level1 {
-    CCSprite *_balloon;
+    CCNode *_balloon;
     CCPhysicsNode *_physicsNode;
     // loop desert and background scene
     CCNode *_desert1;
@@ -58,6 +59,7 @@ typedef NS_ENUM(NSInteger, ObjType) {
     NSInteger _score;
     
     CCLabelTTF *_scoreText;
+    CCLabelTTF *_counterText;
     
     CCButton *_restartButton;
     CCButton *_pauseButton;
@@ -69,6 +71,7 @@ typedef NS_ENUM(NSInteger, ObjType) {
     
     CCParticleSystem *_protectCircle;
     CCNode *over;
+    CCNode *countDown;
     
     CCNode *_instruct1;
     CCNode *_instruct2;
@@ -108,6 +111,7 @@ typedef NS_ENUM(NSInteger, ObjType) {
         [_instruct3 removeFromParent];
         [_instruct4 removeFromParent];
         [_instruct5 removeFromParent];
+        _counterText.visible = FALSE;
     }
 }
 
@@ -115,22 +119,17 @@ typedef NS_ENUM(NSInteger, ObjType) {
     [super onEnter];
 }
 
+- (void)countDown:(NSString *)strNum {
+    [NSThread sleepForTimeInterval:1.0f];
+    [_counterText setString:strNum];
+}
+
 - (void)onEnterTransitionDidFinish {
     [super onEnterTransitionDidFinish];
-    
+
     self.userInteractionEnabled = YES;
-    // only show instructions for the first game round
-    if (firstRound) {
-        
-        [NSThread sleepForTimeInterval:3];
-        firstRound = FALSE;
-        [_instruct1 removeFromParent];
-        [_instruct2 removeFromParent];
-        [_instruct3 removeFromParent];
-        [_instruct4 removeFromParent];
-        [_instruct5 removeFromParent];
-    }
 }
+
 
 #pragma mark - CCPhysicsCollisionDelegate
 
@@ -177,7 +176,6 @@ typedef NS_ENUM(NSInteger, ObjType) {
     [_objs_ctrl removeObjectAtIndex:0];
     
     _scoreText.string = [NSString stringWithFormat:@"%d", _score];
-
     // accelerate speed to increase difficulty
     NSInteger speedLevel = _score / speedScoreInterval;
     if (speedLevel >= 1 && speedLevel > preSpeedLevel && bg_scrollSpeed <= scrollSpeedMax) {
@@ -188,7 +186,27 @@ typedef NS_ENUM(NSInteger, ObjType) {
     return YES;
 }
 
+
+
 - (void)update:(CCTime)delta {
+    // only show instructions for the first game round
+    if (firstRound) {
+        _counterText.string = [NSString stringWithFormat:@"%d", counterDown--];
+        [NSThread sleepForTimeInterval:1.0f];
+        bg_scrollSpeed = 0.0f;
+        
+        if (counterDown == -1) {
+            bg_scrollSpeed = 50.f;
+            firstRound = FALSE;
+            _counterText.visible = FALSE;
+            [_instruct1 removeFromParent];
+            [_instruct2 removeFromParent];
+            [_instruct3 removeFromParent];
+            [_instruct4 removeFromParent];
+            [_instruct5 removeFromParent];
+        }
+    }
+    
     // update balloon position
     _balloon.position = ccp(_balloon.position.x + delta * bg_scrollSpeed, _balloon.position.y);
     if (_protected) {
@@ -370,6 +388,12 @@ typedef NS_ENUM(NSInteger, ObjType) {
         over = (CCNode *)[CCBReader loadAsScene:@"GameOver"];
         over.position = ccp(_balloon.position.x + 70.f, 250.f);
         [_physicsNode addChild:over];
+        
+        // apply force to the balloon and let it fly away
+        //[_physicsNode addChild:_balloon];
+        CGPoint flyDirection = ccp(0, -1);
+        CGPoint force = ccpMult(flyDirection, 10);
+        [_balloon.physicsBody applyForce:force];
     }
 }
 
