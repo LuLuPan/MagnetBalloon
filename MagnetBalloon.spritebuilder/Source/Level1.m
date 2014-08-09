@@ -186,16 +186,20 @@ typedef NS_ENUM(NSInteger, ObjType) {
     return YES;
 }
 
-
-
-- (void)update:(CCTime)delta {
+- (void) showInstruct {
     // only show instructions for the first game round
     if (firstRound) {
-        _counterText.string = [NSString stringWithFormat:@"%d", counterDown--];
+        if (counterDown-- == 0) {
+            _counterText.string = [NSString stringWithFormat:@"Ready Go!"];
+            _counterText.fontSize = 25.0f;
+        }
+        else if (counterDown >= 0) {
+            _counterText.string = [NSString stringWithFormat:@"%d", counterDown+1];
+        }
         [NSThread sleepForTimeInterval:1.0f];
         bg_scrollSpeed = 0.0f;
         
-        if (counterDown == -1) {
+        if (counterDown == -2) {
             bg_scrollSpeed = 50.f;
             firstRound = FALSE;
             _counterText.visible = FALSE;
@@ -206,6 +210,10 @@ typedef NS_ENUM(NSInteger, ObjType) {
             [_instruct5 removeFromParent];
         }
     }
+}
+
+- (void)update:(CCTime)delta {
+    [self showInstruct];
     
     // update balloon position
     _balloon.position = ccp(_balloon.position.x + delta * bg_scrollSpeed, _balloon.position.y);
