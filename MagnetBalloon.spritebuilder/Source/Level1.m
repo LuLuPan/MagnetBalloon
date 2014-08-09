@@ -24,7 +24,7 @@ static const NSInteger protectionLimit = 5;
 // distance between each ore bars
 static const CGFloat firstOrePosition = 200.f;
 static const CGFloat minDistanceBetweenOres = 90.f;
-static const CGFloat maxDistanceBetweenOres = 150.f;
+static const CGFloat maxDistanceBetweenOres = 200.f;
 static BOOL firstRound = TRUE;
 static NSInteger counterDown = 3;
 
@@ -61,6 +61,7 @@ typedef NS_ENUM(NSInteger, ObjType) {
     
     CCLabelTTF *_scoreText;
     CCLabelTTF *_counterText;
+    CCLabelTTF *_plusOneText;
     
     CCButton *_restartButton;
     CCButton *_pauseButton;
@@ -79,6 +80,11 @@ typedef NS_ENUM(NSInteger, ObjType) {
     CCNode *_instruct3;
     CCNode *_instruct4;
     CCNode *_instruct5;
+}
+
+- (void)runEachSec {
+    if (_plusOneText.visible)
+        _plusOneText.visible = FALSE;
 }
 
 - (void)didLoadFromCCB {
@@ -114,7 +120,11 @@ typedef NS_ENUM(NSInteger, ObjType) {
         [_instruct5 removeFromParent];
         _counterText.visible = FALSE;
     }
+    
+    [self schedule:@selector(runEachSec) interval:1];
 }
+
+
 
 - (void)onEnter {
     [super onEnter];
@@ -140,6 +150,8 @@ typedef NS_ENUM(NSInteger, ObjType) {
         // check if could get current ore to gain a point
         if (object.pole_n == _balloon_magnet.pole_n) {
             _score++;
+            _plusOneText.string = [NSString stringWithFormat:@"+1"];
+            _plusOneText.visible = TRUE;
             CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"disappear"];
             // make the particle effect clean itself up, once it is completed
             explosion.autoRemoveOnFinish = TRUE;
@@ -165,6 +177,8 @@ typedef NS_ENUM(NSInteger, ObjType) {
         if (object.pole_n == _balloon_magnet.pole_n) {
             // avoid bady guy successfully
             _score += 2;
+            _plusOneText.string = [NSString stringWithFormat:@"+2"];
+            _plusOneText.visible = TRUE;
         } else {
             // trap by bad guy, restart
             if (!_protected)
