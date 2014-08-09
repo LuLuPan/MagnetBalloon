@@ -62,6 +62,7 @@ typedef NS_ENUM(NSInteger, ObjType) {
     CCLabelTTF *_scoreText;
     CCLabelTTF *_counterText;
     CCLabelTTF *_plusOneText;
+    CCLabelTTF *_instructText;
     
     CCButton *_restartButton;
     CCButton *_pauseButton;
@@ -119,6 +120,7 @@ typedef NS_ENUM(NSInteger, ObjType) {
         [_instruct4 removeFromParent];
         [_instruct5 removeFromParent];
         _counterText.visible = FALSE;
+        _instructText.visible = FALSE;
     }
     
     [self schedule:@selector(runEachSec) interval:1];
@@ -218,6 +220,7 @@ typedef NS_ENUM(NSInteger, ObjType) {
             bg_scrollSpeed = 50.f;
             firstRound = FALSE;
             _counterText.visible = FALSE;
+            _instructText.visible = FALSE;
             [_instruct1 removeFromParent];
             [_instruct2 removeFromParent];
             [_instruct3 removeFromParent];
