@@ -11,7 +11,6 @@
 @implementation Instructions
 
 - (void)return_to_menu {
-    CCLOG(@"Return Button Pressed");
     CCScene *menu = [CCBReader loadAsScene:@"MainScene"];
     CCTransition *transition = [CCTransition transitionFadeWithDuration:0.8f];
     [[CCDirector sharedDirector] presentScene:menu withTransition:transition];

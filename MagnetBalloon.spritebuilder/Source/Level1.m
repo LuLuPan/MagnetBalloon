@@ -66,6 +66,7 @@ typedef NS_ENUM(NSInteger, ObjType) {
     
     CCButton *_restartButton;
     CCButton *_pauseButton;
+    CCButton *_returnButton;
     BOOL _gameOver;
     BOOL _paused;
     // be protected from badguy
@@ -386,14 +387,22 @@ typedef NS_ENUM(NSInteger, ObjType) {
     return ore;
 }
 
+- (void)return_to_menu {
+    CCScene *menu = [CCBReader loadAsScene:@"MainScene"];
+    CCTransition *transition = [CCTransition transitionFadeWithDuration:0.8f];
+    [[CCDirector sharedDirector] presentScene:menu withTransition:transition];
+}
+
 - (void)pause {
     if (_paused == FALSE) {
         cur_scrollSpeed = bg_scrollSpeed;
         bg_scrollSpeed = 0.f;
         _paused = TRUE;
+        _returnButton.visible = TRUE;
     } else {
         bg_scrollSpeed = cur_scrollSpeed;
         _paused = FALSE;
+        _returnButton.visible = FALSE;
     }
 }
 
