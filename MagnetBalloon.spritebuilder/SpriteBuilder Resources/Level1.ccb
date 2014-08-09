@@ -1163,9 +1163,9 @@
 				<key>displayName</key>
 				<string>Crate-8_2x</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_box</string>
 				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>properties</key>
 				<array>
 					<dict>
@@ -1239,6 +1239,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>
@@ -1927,8 +1929,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>

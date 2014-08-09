@@ -41,6 +41,7 @@ typedef NS_ENUM(NSInteger, ObjType) {
 
 @implementation Level1 {
     CCNode *_balloon;
+    CCNode *_box;
     CCPhysicsNode *_physicsNode;
     // loop desert and background scene
     CCNode *_desert1;
@@ -217,6 +218,7 @@ typedef NS_ENUM(NSInteger, ObjType) {
     
     // update balloon position
     _balloon.position = ccp(_balloon.position.x + delta * bg_scrollSpeed, _balloon.position.y);
+
     if (_protected) {
         _protectCircle.position = _balloon.position;
         if (_protectedCount >= protectionLimit) {
@@ -397,11 +399,10 @@ typedef NS_ENUM(NSInteger, ObjType) {
         over.position = ccp(_balloon.position.x + 70.f, 250.f);
         [_physicsNode addChild:over];
         
-        // apply force to the balloon and let it fly away
-        //[_physicsNode addChild:_balloon];
-        CGPoint flyDirection = ccp(0, -1);
-        CGPoint force = ccpMult(flyDirection, 10);
-        [_balloon.physicsBody applyForce:force];
+        // make balloon fall to hit magnet
+        _balloon.physicsBody.affectedByGravity = TRUE;
+        _box.visible = FALSE;
+        _balloon_magnet.visible = FALSE;
     }
 }
 
